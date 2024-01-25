@@ -39,9 +39,10 @@ def arg_parser():
     parser = argparse.ArgumentParser(description='Download spaceX launch photo')
     parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=5)
     parser.add_argument('-c', '--count', type=int, help='enter count of photos', default=5)
-    parser.add_argument('-l', '--launch_id', type=str, help='enter launch_id', default='latest')
+    parser.add_argument('-l', '--launch_id', type=str, help='enter launch_id',
+                        default='61eefaa89eb1064137a1bd73')
     parser.add_argument('-n', '--filename', type=str, help='enter photo filename',
-                        default=random.choice(collect_photo_filenames()))
+                        default=None)
     args = parser.parse_args()
     return args
 
