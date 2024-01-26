@@ -19,8 +19,7 @@ def send_photo_on_time(bot, chat_id):
     post_timer = create_arg_parser().timer
     while file_names:
         post_photo = random.choice(file_names)
-        with open(f'images/{post_photo}', 'rb') as file:
-            photo = file
+        with open(f'images/{post_photo}', 'rb') as photo:
             bot.send_photo(chat_id=chat_id, photo=photo)
         file_names.remove(post_photo)
         time.sleep(post_timer)
