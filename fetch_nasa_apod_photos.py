@@ -12,9 +12,7 @@ def create_arg_parser():
     return args
 
 
-def get_nasa_apod_image_links(count):
-    load_dotenv()
-    nasa_token = os.environ['NASA_TOKEN']
+def get_nasa_apod_image_links(count, nasa_token):
     url = 'https://api.nasa.gov/planetary/apod'
     params = {'api_key': nasa_token, 'count': count}
     response = requests.get(url, params=params)
@@ -27,7 +25,9 @@ def get_nasa_apod_image_links(count):
 
 def main():
     create_photo_folder()
-    for i, link in enumerate(get_nasa_apod_image_links(create_arg_parser().count), 1):
+    load_dotenv()
+    nasa_token = os.environ['NASA_TOKEN']
+    for i, link in enumerate(get_nasa_apod_image_links(create_arg_parser().count, nasa_token=nasa_token),  1):
         download_image(link, path_to_file=f"images/nasa_apod_photo_{i}{get_image_extension(link)}")
 
 
