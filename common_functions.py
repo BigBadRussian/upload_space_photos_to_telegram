@@ -1,4 +1,3 @@
-import argparse
 import os
 from urllib.parse import urlsplit
 import requests
@@ -32,17 +31,6 @@ def get_image_extension(image_url):
     image_filename = os.path.split(path)[1]
     image_extension = os.path.splitext(image_filename)[1]
     return image_extension
-
-
-def create_arg_parser():
-    parser = argparse.ArgumentParser(description='Download spaceX launch photo')
-    parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
-    parser.add_argument('-c', '--count', type=int, help='enter count of photos', default=5)
-    parser.add_argument('-l', '--launch_id', type=str, help='enter launch_id',
-                        default='61eefaa89eb1064137a1bd73')
-    parser.add_argument('-n', '--filename', type=str, help='enter photo filename', default=None)
-    args = parser.parse_args()
-    return args
 
 
 def create_bot():
