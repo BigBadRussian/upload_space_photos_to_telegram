@@ -4,9 +4,7 @@ from dotenv import load_dotenv
 from common_functions import create_photo_folder, download_image
 
 
-def get_nasa_epic_image_links():
-    load_dotenv()
-    nasa_token = os.environ['NASA_TOKEN']
+def get_nasa_epic_image_links(nasa_token):
     url_data_photos = f'https://api.nasa.gov/EPIC/api/natural/images?api_key={nasa_token}'
     url_photo_file = f'https://api.nasa.gov/EPIC/archive/natural'
     response = requests.get(url_data_photos)
@@ -30,8 +28,10 @@ def get_nasa_epic_image_links():
 
 
 def main():
+    load_dotenv()
+    nasa_token = os.environ['NASA_TOKEN']
     create_photo_folder()
-    for i, link in enumerate(get_nasa_epic_image_links(), 1):
+    for i, link in enumerate(get_nasa_epic_image_links(nasa_token=nasa_token), 1):
         download_image(link, path_to_file=f"images/nasa_epic_photo{i}.png")
 
 
