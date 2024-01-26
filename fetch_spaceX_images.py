@@ -2,7 +2,7 @@ import requests
 from common_functions import download_image, create_photo_folder, arg_parser
 
 
-def get_pics_links_from_spaceX_launch():
+def get_spaceX_launch_image_links():
     launch_id = arg_parser().launch_id
     url_space_x = f'https://api.spacexdata.com/v5/launches/{launch_id}'
     response = requests.get(url_space_x)
@@ -13,7 +13,7 @@ def get_pics_links_from_spaceX_launch():
 
 def main():
     create_photo_folder()
-    for i, link in enumerate(get_pics_links_from_spaceX_launch(), 1):
+    for i, link in enumerate(get_spaceX_launch_image_links(), 1):
         download_image(link, path_to_file=f"images/spaceX_{i}.jpg")
 
 
