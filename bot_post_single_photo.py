@@ -1,6 +1,11 @@
 import argparse
+import os
 import random
-from common_functions import create_bot, collect_photo_filenames
+
+import telegram
+from dotenv import load_dotenv
+
+from common_functions import collect_photo_filenames
 
 
 def create_arg_parser():
@@ -10,8 +15,7 @@ def create_arg_parser():
     return args
 
 
-def post_single_photo():
-    bot, chat_id = create_bot()
+def post_single_photo(bot, chat_id):
     if create_arg_parser().filename:
         post_photo = create_arg_parser().filename
     else:
@@ -20,4 +24,8 @@ def post_single_photo():
 
 
 if __name__ == '__main__':
-    post_single_photo()
+    load_dotenv()
+    chat_id = os.environ['TG_CHAT_ID']
+    bot_token = os.environ['TG_BOT_TOKEN']
+    bot = telegram.Bot(bot_token)
+    post_single_photo(bot=bot, chat_id=chat_id)

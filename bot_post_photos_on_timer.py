@@ -1,7 +1,10 @@
+import os
 import random
 import time
 import argparse
-from common_functions import create_bot, collect_photo_filenames
+import telegram
+from dotenv import load_dotenv
+from common_functions import collect_photo_filenames
 
 
 def create_arg_parser():
@@ -11,21 +14,23 @@ def create_arg_parser():
     return args
 
 
-def send_photo_on_time():
+def send_photo_on_time(bot, chat_id):
     file_names = collect_photo_filenames()
     post_timer = create_arg_parser().timer
-    bot, chat_id = create_bot()
     while file_names:
         post_photo = random.choice(file_names)
         bot.send_photo(chat_id=chat_id, photo=open(f'images/{post_photo}', 'rb'))
         file_names.remove(post_photo)
         time.sleep(post_timer)
-    if not file_names:
-        send_photo_on_time()
 
 
 def main():
-    send_photo_on_time()
+    load_dotenv()
+    chat_id = os.environ['TG_CHAT_ID']
+    bot_token = os.environ['TG_BOT_TOKEN']
+    bot = telegram.Bot(bot_token)
+    while True:
+        send_photo_on_time(bot=bot, chat_id=chat_id)
 
 
 if __name__ == '__main__':

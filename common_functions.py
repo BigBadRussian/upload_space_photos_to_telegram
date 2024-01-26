@@ -31,11 +31,3 @@ def get_image_extension(image_url):
     image_filename = os.path.split(path)[1]
     image_extension = os.path.splitext(image_filename)[1]
     return image_extension
-
-
-def create_bot():
-    load_dotenv()
-    chat_id = os.environ['CHAT_ID']
-    bot_token = os.environ['BOT_TOKEN']
-    bot = telegram.Bot(bot_token)
-    return bot, chat_id
