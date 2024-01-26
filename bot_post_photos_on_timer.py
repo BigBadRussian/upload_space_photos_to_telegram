@@ -1,11 +1,19 @@
 import random
 import time
-from common_functions import arg_parser, create_bot, collect_photo_filenames
+import argparse
+from common_functions import create_bot, collect_photo_filenames
+
+
+def create_arg_parser():
+    parser = argparse.ArgumentParser(description='Download spaceX launch photo')
+    parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
+    args = parser.parse_args()
+    return args
 
 
 def send_photo_on_time():
     file_names = collect_photo_filenames()
-    post_timer = arg_parser().timer
+    post_timer = create_arg_parser().timer
     bot, chat_id = create_bot()
     while file_names:
         post_photo = random.choice(file_names)
