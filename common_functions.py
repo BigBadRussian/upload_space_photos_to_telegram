@@ -34,7 +34,7 @@ def get_image_extension(image_url):
     return image_extension
 
 
-def arg_parser():
+def create_arg_parser():
     parser = argparse.ArgumentParser(description='Download spaceX launch photo')
     parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
     parser.add_argument('-c', '--count', type=int, help='enter count of photos', default=5)
