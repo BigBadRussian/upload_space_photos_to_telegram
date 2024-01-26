@@ -1,6 +1,5 @@
 import argparse
 import os
-import random
 from urllib.parse import urlsplit
 import requests
 import telegram
@@ -49,6 +48,6 @@ def arg_parser():
 def create_bot():
     load_dotenv()
     chat_id = os.environ['CHAT_ID']
-    bot_token = os.environ['post_space_photos_bot_token']
+    bot_token = os.environ['BOT_TOKEN']
     bot = telegram.Bot(bot_token)
     return bot, chat_id
