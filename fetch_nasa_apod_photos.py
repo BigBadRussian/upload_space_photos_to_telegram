@@ -28,8 +28,8 @@ def main():
     params = {'api_key': nasa_token}
     apod_image_links = get_nasa_apod_image_links(create_arg_parser().count, nasa_token=nasa_token)
     filename_template = f"images/nasa_apod_photo_"
-    for i, link in enumerate(get_nasa_apod_image_links(apod_image_links,  1)):
-        download_image(link, params=params, path_to_file=f"{filename_template}{i}{get_image_extension(link)}")
+    for i, link in enumerate(apod_image_links):
+        download_image(link, params=params, full_filename=f"{filename_template}{i}{get_image_extension(link)}")
 
 
 if __name__ == "__main__":
