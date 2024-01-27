@@ -12,10 +12,10 @@ def get_nasa_epic_image_links(nasa_token):
     response.raise_for_status()
     photo_filenames = [f'{item["image"]}.png' for item in response.json()]
     photo_dates = ['/'.join(item['date'].split()[0].split('-')) for item in response.json()]
-    photo_filenames_dates = [{'filename': x, 'date': y} for x, y in zip(photo_filenames, photo_dates)]
-    epic_photo_urls = [f'{epic_photo_file_url}/{photo_filenames_dates[i]["date"]}/png/'
-                       f'{photo_filenames_dates[i]["filename"]}'
-                       for i, item in enumerate(photo_filenames_dates)]
+    photo_filenames_and_dates = [{'filename': x, 'date': y} for x, y in zip(photo_filenames, photo_dates)]
+    epic_photo_urls = [f'{epic_photo_file_url}/{photo_filenames_and_dates[i]["date"]}/png/'
+                       f'{photo_filenames_and_dates[i]["filename"]}'
+                       for i, item in enumerate(photo_filenames_and_dates)]
 
     return epic_photo_urls
 
