@@ -2,7 +2,7 @@ import argparse
 import os
 import requests
 from dotenv import load_dotenv
-from common_functions import download_image, create_photo_folder, get_image_extension
+from common_functions import download_image, get_image_extension
 
 
 def create_arg_parser():
@@ -24,7 +24,7 @@ def get_nasa_apod_image_links(count, nasa_token):
 
 
 def main():
-    create_photo_folder()
+    os.makedirs('images', exist_ok=True)
     load_dotenv()
     nasa_token = os.environ['NASA_TOKEN']
     for i, link in enumerate(get_nasa_apod_image_links(create_arg_parser().count, nasa_token=nasa_token),  1):

@@ -1,13 +1,6 @@
 import os
 from urllib.parse import urlsplit
 import requests
-import telegram
-from dotenv import load_dotenv
-
-
-def create_photo_folder():
-    if not os.path.exists('images'):
-        os.makedirs('images')
 
 
 def collect_photo_filenames():

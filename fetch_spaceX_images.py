@@ -1,7 +1,8 @@
 import argparse
+import os
 
 import requests
-from common_functions import download_image, create_photo_folder
+from common_functions import download_image
 
 
 def create_arg_parser():
@@ -22,7 +23,7 @@ def get_spaceX_launch_image_links():
 
 
 def main():
-    create_photo_folder()
+    os.makedirs('images', exist_ok=True)
     for i, link in enumerate(get_spaceX_launch_image_links(), 1):
         download_image(link, path_to_file=f"images/spaceX_{i}.jpg")
 
