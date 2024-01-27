@@ -17,9 +17,7 @@ def get_nasa_apod_image_links(count, nasa_token):
     params = {'api_key': nasa_token, 'count': count}
     response = requests.get(url, params=params)
     response.raise_for_status()
-    nasa_apod_image_links = []
-    for i, item in enumerate(response.json()):
-        nasa_apod_image_links.append(item['url'])
+    nasa_apod_image_links = [item['url'] for item in response.json()]
     return nasa_apod_image_links
 
 
