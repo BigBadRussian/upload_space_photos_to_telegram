@@ -25,8 +25,9 @@ def main():
     os.makedirs('images', exist_ok=True)
     load_dotenv()
     nasa_token = os.environ['NASA_TOKEN']
+    params = {'api_key': nasa_token}
     for i, link in enumerate(get_nasa_apod_image_links(create_arg_parser().count, nasa_token=nasa_token),  1):
-        download_image(link, path_to_file=f"images/nasa_apod_photo_{i}{get_image_extension(link)}")
+        download_image(link, params=params, path_to_file=f"images/nasa_apod_photo_{i}{get_image_extension(link)}")
 
 
 if __name__ == "__main__":

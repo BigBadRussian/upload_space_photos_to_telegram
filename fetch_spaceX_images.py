@@ -25,7 +25,7 @@ def get_spaceX_launch_image_links():
 def main():
     os.makedirs('images', exist_ok=True)
     for i, link in enumerate(get_spaceX_launch_image_links(), 1):
-        download_image(link, path_to_file=f"images/spaceX_{i}.jpg")
+        download_image(link, params=None, path_to_file=f"images/spaceX_{i}.jpg")
 
 
 if __name__ == "__main__":

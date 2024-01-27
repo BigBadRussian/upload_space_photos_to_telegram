@@ -12,8 +12,8 @@ def collect_photo_filenames():
     return file_names
 
 
-def download_image(url, path_to_file):
-    response = requests.get(url)
+def download_image(url, params, path_to_file):
+    response = requests.get(url, params=params)
     response.raise_for_status()
     with open(path_to_file, 'wb') as file:
         file.write(response.content)
