@@ -5,25 +5,18 @@ from common_functions import download_image
 
 
 def get_nasa_epic_image_links(nasa_token):
-    url_data_photos = f'https://api.nasa.gov/EPIC/api/natural/images?api_key={nasa_token}'
-    url_photo_file = f'https://api.nasa.gov/EPIC/archive/natural'
-    response = requests.get(url_data_photos)
+    epic_photos_data_url = f'https://api.nasa.gov/EPIC/api/natural/images'
+    params_apikey = {'api_key': nasa_token}
+    epic_photo_file_url = f'https://api.nasa.gov/EPIC/archive/natural'
+    response = requests.get(epic_photos_data_url, params=params_apikey)
     response.raise_for_status()
-    data_photos = response.json()
-    photo_filenames = []
-    photo_dates = []
-    for i, item in enumerate(data_photos):
-        photo_filenames.append(f'{item["image"]}.png')
-        photo_dates.append('/'.join(item['date'].split()[0].split('-')))
+    photo_filenames = [f'{item["image"]}.png' for item in response.json()]
+    photo_dates = ['/'.join(item['date'].split()[0].split('-')) for item in response.json()]
+    photo_filenames_dates = [{'filename': x, 'date': y} for x, y in zip(photo_filenames, photo_dates)]
+    epic_photo_urls = [f'{epic_photo_file_url}/{photo_filenames_dates[i]["date"]}/png/'
+                       f'{photo_filenames_dates[i]["filename"]}?api_key={nasa_token}'
+                       for i, item in enumerate(photo_filenames_dates)]
 
-    new_epic_data = []
-    for i, item in enumerate(data_photos):
-        new_epic_data.append({'filename': photo_filenames[i], 'date': photo_dates[i]})
-
-    epic_photo_urls = []
-    for i, item in enumerate(new_epic_data):
-        epic_photo_urls.append(f'{url_photo_file}/{new_epic_data[i]["date"]}/png/'
-                               f'{new_epic_data[i]["filename"]}?api_key={nasa_token}')
     return epic_photo_urls
 
 
