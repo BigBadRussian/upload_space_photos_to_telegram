@@ -6,9 +6,9 @@ from common_functions import download_image
 
 def get_nasa_epic_image_links(nasa_token):
     epic_photos_data_url = f'https://api.nasa.gov/EPIC/api/natural/images'
-    params_apikey = {'api_key': nasa_token}
+    params = {'api_key': nasa_token}
     epic_photo_file_url = f'https://api.nasa.gov/EPIC/archive/natural'
-    response = requests.get(epic_photos_data_url, params=params_apikey)
+    response = requests.get(epic_photos_data_url, params=params)
     response.raise_for_status()
     photo_filenames = [f'{item["image"]}.png' for item in response.json()]
     photo_dates = ['/'.join(item['date'].split()[0].split('-')) for item in response.json()]
