@@ -6,7 +6,7 @@ from common_functions import download_image, get_image_extension
 
 
 def set_cli_args():
-    parser = argparse.ArgumentParser(description='Download spaceX launch photo')
+    parser = argparse.ArgumentParser(description='Download nasa apod photo')
     parser.add_argument('-c', '--count', type=int, help='enter count of photos', default=5)
     args = parser.parse_args()
     return args

@@ -7,7 +7,7 @@ from common_functions import collect_photo_filenames
 
 
 def set_cli_args():
-    parser = argparse.ArgumentParser(description='Download spaceX launch photo')
+    parser = argparse.ArgumentParser(description='telegram bot sends random space photo into tg channel')
     parser.add_argument('-n', '--filename', type=str, help='enter photo filename',
                         default=random.choice(collect_photo_filenames()))
     args = parser.parse_args()

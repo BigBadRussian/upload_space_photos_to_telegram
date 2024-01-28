@@ -8,7 +8,8 @@ from common_functions import collect_photo_filenames
 
 
 def set_cli_args():
-    parser = argparse.ArgumentParser(description='telegram bot sends random space photo into tg channel')
+    parser = argparse.ArgumentParser(description='telegram bot sends random space photo '
+                                                 'into tg channel at certain time intervals')
     parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
     args = parser.parse_args()
     return args
