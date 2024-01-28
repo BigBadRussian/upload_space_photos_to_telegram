@@ -15,9 +15,9 @@
 ```
 Сохраните  токен nasa, токен вашего бота и chat_id вашего телеграм канала в .env файл:
 ```
-NASA_TOKEN = 'ваш nasa токен'
-post_space_photos_bot_token = 'токен вашего бота'
-CHAT_ID = 'chat_id вашего канала'
+NASA_TOKEN = 'Td1LW0iAVWAtojek0e5dlycxi7PCSqa6wMwzyYRM'
+TG_BOT_TOKEN = '6952441198:AAEIkN3pshU6isS0gh4JfIYxyQPsWJNj7xk'
+TG_CHAT_ID = '@daily_space_photos'
 ```
 Python3 должен быть уже установлен.  
 Установите зависимости:
