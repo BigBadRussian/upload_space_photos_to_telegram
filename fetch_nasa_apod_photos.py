@@ -28,7 +28,7 @@ def main():
     nasa_token = os.environ['NASA_TOKEN']
     params = {'api_key': nasa_token}
     apod_image_links = get_nasa_apod_image_links(cli_args.count, nasa_token=nasa_token)
-    filename_template = f"images/nasa_apod_photo_"
+    filename_template = "images/nasa_apod_photo_"
     for number, link in enumerate(apod_image_links):
         download_image(link, params=params, full_filename=f"{filename_template}{number}{get_image_extension(link)}")
 
