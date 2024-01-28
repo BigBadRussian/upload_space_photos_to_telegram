@@ -11,13 +11,11 @@ def set_cli_args():
     parser = argparse.ArgumentParser(description='telegram bot sends random space photo '
                                                  'into tg channel at certain time intervals')
     parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
-    args = parser.parse_args()
-    return args
+    return parser
 
 
-def send_photo_on_time(bot, chat_id):
+def send_photo_on_time(bot, chat_id, post_timer):
     file_names = collect_photo_filenames()
-    post_timer = set_cli_args().timer
     while file_names:
         post_photo = random.choice(file_names)
         with open(f'images/{post_photo}', 'rb') as photo:
@@ -27,12 +25,14 @@ def send_photo_on_time(bot, chat_id):
 
 
 def main():
+    parser = set_cli_args()
+    args = parser.parse_args()
     load_dotenv()
     chat_id = os.environ['TG_CHAT_ID']
     bot_token = os.environ['TG_BOT_TOKEN']
     bot = telegram.Bot(bot_token)
     while True:
-        send_photo_on_time(bot=bot, chat_id=chat_id)
+        send_photo_on_time(bot=bot, chat_id=chat_id, post_timer=args.timer)
 
 
 if __name__ == '__main__':
