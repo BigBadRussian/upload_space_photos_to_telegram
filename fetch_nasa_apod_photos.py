@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from common_functions import download_image, get_image_extension
 
 
-def create_arg_parser():
+def set_cli_args():
     parser = argparse.ArgumentParser(description='Download spaceX launch photo')
     parser.add_argument('-c', '--count', type=int, help='enter count of photos', default=5)
     args = parser.parse_args()
@@ -26,7 +26,7 @@ def main():
     load_dotenv()
     nasa_token = os.environ['NASA_TOKEN']
     params = {'api_key': nasa_token}
-    apod_image_links = get_nasa_apod_image_links(create_arg_parser().count, nasa_token=nasa_token)
+    apod_image_links = get_nasa_apod_image_links(set_cli_args().count, nasa_token=nasa_token)
     filename_template = f"images/nasa_apod_photo_"
     for i, link in enumerate(apod_image_links):
         download_image(link, params=params, full_filename=f"{filename_template}{i}{get_image_extension(link)}")

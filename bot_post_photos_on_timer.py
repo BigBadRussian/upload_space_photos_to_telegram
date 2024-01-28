@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from common_functions import collect_photo_filenames
 
 
-def create_arg_parser():
+def set_cli_args():
     parser = argparse.ArgumentParser(description='Download spaceX launch photo')
     parser.add_argument('-t', '--timer', type=int, help='enter time period for posts (secs)', default=14400)
     args = parser.parse_args()
@@ -16,7 +16,7 @@ def create_arg_parser():
 
 def send_photo_on_time(bot, chat_id):
     file_names = collect_photo_filenames()
-    post_timer = create_arg_parser().timer
+    post_timer = set_cli_args().timer
     while file_names:
         post_photo = random.choice(file_names)
         with open(f'images/{post_photo}', 'rb') as photo:

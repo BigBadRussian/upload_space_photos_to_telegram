@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from common_functions import collect_photo_filenames
 
 
-def create_arg_parser():
+def set_cli_args():
     parser = argparse.ArgumentParser(description='Download spaceX launch photo')
     parser.add_argument('-n', '--filename', type=str, help='enter photo filename',
                         default=random.choice(collect_photo_filenames()))
@@ -15,7 +15,7 @@ def create_arg_parser():
 
 
 def post_single_photo(bot, chat_id):
-    post_photo = create_arg_parser().filename
+    post_photo = set_cli_args().filename
     with open(f'images/{post_photo}', 'rb') as photo:
         bot.send_photo(chat_id=chat_id, photo=photo)
 
