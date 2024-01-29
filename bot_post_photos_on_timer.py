@@ -14,7 +14,7 @@ def set_cli_args():
     return parser
 
 
-def send_one_photo_per_time(bot, chat_id, post_timer):
+def send_photos_one_per_time(bot, chat_id, post_timer):
     file_names = collect_photo_filenames()
     while file_names:
         post_photo = random.choice(file_names)
