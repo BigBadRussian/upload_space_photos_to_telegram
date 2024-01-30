@@ -32,7 +32,7 @@ def main():
     bot_token = os.environ['TG_BOT_TOKEN']
     bot = telegram.Bot(bot_token)
     while True:
-        send_photo_on_time(bot=bot, chat_id=chat_id, post_timer=args.timer)
+        send_photos_one_per_time(bot=bot, chat_id=chat_id, post_timer=args.timer)
 
 
 if __name__ == '__main__':
