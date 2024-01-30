@@ -15,12 +15,13 @@ def get_nasa_epic_image_properties(nasa_token):
 def compose_nasa_epic_image_links(nasa_token):
     image_properties = get_nasa_epic_image_properties(nasa_token)
     epic_photo_archive_url = f'https://api.nasa.gov/EPIC/archive/natural'
-    photo_filenames = [f'{item["image"]}.png' for item in image_properties]
-    photo_dates = ['/'.join(item['date'].split()[0].split('-')) for item in image_properties]
-    photo_filenames_and_dates = [{'filename': x, 'date': y} for x, y in zip(photo_filenames, photo_dates)]
+    photo_filenames_and_dates = [{'filename': f'{item["image"]}.png',
+                                  'date': '/'.join(item['date'].split()[0].split('-'))}
+                                 for item in image_properties]
     epic_photo_urls = [f'{epic_photo_archive_url}/{photo_filenames_and_dates[i]["date"]}/png/'
                        f'{photo_filenames_and_dates[i]["filename"]}'
                        for i, item in enumerate(photo_filenames_and_dates)]
+
     return epic_photo_urls
 
 
